@@ -1,0 +1,25 @@
+@import "./footer";
+@import "./section";
+@import "./header";
+@import "./mixins";
+@import "./variables";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  // border: solid 1px red;
+}
+
+body {
+  height: 100vh;
+  width: 100vw;
+  font-family: "Poppins", sans-serif;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  width: 100%;
+}

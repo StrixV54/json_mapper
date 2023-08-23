@@ -1,0 +1,33 @@
+@import "./mixins";
+
+.section {
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  margin-bottom: 20px;
+
+  .input-textbox {
+    height: 100%;
+    width: 100%;
+    display: flex;
+
+    .text-area {
+      @include textareabasic;
+    }
+  }
+
+  .sidebar {
+    width: 500px;
+    @include fullflex;
+    flex-direction: column;
+
+    .text-area {
+      @include textareabasic;
+    }
+
+    button {
+      @include button;
+    }
+  }
+}
