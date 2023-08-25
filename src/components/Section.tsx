@@ -14,7 +14,7 @@ function Section() {
   // console.log(primaryText);
 
   useEffect(() => {
-    console.log("first");
+    // console.log("first");
     const flask = new CodeFlask("#codebox", {
       language: "js",
       lineNumbers: true,

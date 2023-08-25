@@ -1,32 +1,106 @@
 @import "./mixins";
 
+$time: 1s;
+
 .topbar {
-  display: flex;
-  flex-direction: row;
   padding: 20px 40px;
   align-items: center;
-  justify-content: space-between;
   background-color: #1d1d1d;
   color: rgb(255, 255, 255);
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 4;
+  height: 87px;
+  transition: all $time ease-in-out;
 
-  .logo {
-    // width: 300px;
-  }
-  .switch {
-    // width: 100px;
-  }
-
-  .route-select {
+  .header-container {
+    height: 87px;
     display: flex;
+    position: relative;
     flex-direction: row;
-    gap: 4px;
+    justify-content: space-between;
+    transition: all $time ease-in-out;
 
-    .jsonstring-btn {
-      @include button();
+    .logo {
+      // width: 300px;
+      font-size: 18px;
+      margin: 10px 0;
+      transition: all calc($time - 0.4s) ease-in-out;
+      position: absolute;
+      top: 0;
+      left: 0;
     }
 
-    .mapper-btn {
-      @include button();
+    .logo-ani {
+      top: 30%;
+      left: 36%;
+      font-size: 30px;
+    }
+
+    .switch {
+      // width: 100px;
+      transition: all $time ease-in-out;
+    }
+
+    .route-select {
+      display: flex;
+      flex-direction: row;
+      align-items: baseline;
+      justify-content: baseline;
+      gap: 4px;
+      transition: all calc($time - 0.5s) ease-in-out;
+      left: 50%;
+      position: absolute;
+      top: 0;
+
+      .jsonstring-btn {
+        @include button();
+        transition:
+          height calc($time - 0.5s) ease-in-out,
+          width calc($time - 0.5s) ease-in-out,
+          background-color 0.8s ease;
+      }
+
+      .mapper-btn {
+        @include button();
+        transition:
+          height calc($time - 0.5s) ease-in-out,
+          width calc($time - 0.5s) ease-in-out,
+          background-color 0.8s ease;
+      }
+    }
+  }
+}
+
+.topbar-fullmode {
+  height: 80%;
+
+  .header-container {
+    height: 80%;
+
+    // .logo {
+    //   top: 30%;
+    //   left: 36%;
+    //   font-size: 30px;
+    //   position: absolute;
+    // }
+
+    .route-select {
+      gap: 20px;
+      top: 70%;
+      left: 35%;
+      position: absolute;
+
+      .jsonstring-btn {
+        @include button();
+        @include homescreen-btn;
+      }
+
+      .mapper-btn {
+        @include button();
+        @include homescreen-btn;
+      }
     }
   }
 }

@@ -1,13 +1,14 @@
 @import "./mixins";
 
 .section {
-  padding: 10px;
+  // padding: calc(87 + 10) px 10px (35+10) px 10px;
+  padding: 97px 10px 35px 10px;
   height: 100%;
   width: 100%;
   display: flex;
   flex-direction: row;
   gap: 10px;
-  margin-bottom: 25px;
+  // margin-bottom: 25px;
   caret-color: #ffffff;
 
   #codebox {
@@ -107,7 +108,6 @@
   //   display: flex;
 
   //   .text-area {
-  //     @include textareabasic;
   //   }
   // }
 
@@ -119,11 +119,24 @@
     flex-direction: column;
 
     .text-area {
-      @include textareabasic;
+      background-color: rgb(37, 37, 37);
+      color: #9badb7;
+      resize: none;
+      flex: 1;
+      height: 100%;
+      padding: 10px;
+      font-size: 15px;
+      border: none;
+
+      &:active,
+      &:focus {
+        border: none;
+        outline: none;
+      }
     }
 
     button {
-      @include button();
+      @include button(#ffffff, #a5afe9, fit-content);
     }
   }
 }

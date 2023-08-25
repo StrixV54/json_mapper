@@ -3,18 +3,19 @@
 // import viteLogo from "/vite.svg";
 // import "./App.scss";
 
+import { useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Section from "./components/Section";
 
 function App() {
-  // const [count, setCount] = useState<number>(0);
+  const [isFullmode, setIsFullmode] = useState(true);
 
   return (
     <>
-      <Header />
+      <Header isFullmode={isFullmode} setIsFullmode={setIsFullmode} />
       <Section />
-      <Footer />
+      <Footer isFullmode={isFullmode} setIsFullmode={setIsFullmode} />
     </>
   );
 }

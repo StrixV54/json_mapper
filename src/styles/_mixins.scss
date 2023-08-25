@@ -4,33 +4,33 @@
   width: 100%;
 }
 
-@mixin button($color: #dedede, $hovercolor: #55b6dd, $fit: fit-content) {
-  padding: 8px 20px;
+@mixin button($color: #dedede, $hovercolor: #55b6dd, $fit: 140px) {
   background-color: $color;
   color: #000000;
   width: $fit;
+  height: 40px;
   border-radius: 5px;
+  padding: 0 20px;
   margin: 8px;
   border: none;
   transition: all 0.2s ease;
+  cursor: pointer;
 
   &:hover {
     background-color: $hovercolor;
   }
 }
 
-@mixin textareabasic {
-  background-color: rgb(191, 205, 224);
-  resize: none;
-  flex: 1;
-  height: 100%;
-  padding: 10px;
-  font-size: 15px;
-  border: none;
+@mixin homescreen-btn {
+  height: 100px;
+  width: 200px;
+  padding: auto;
+  border: solid 2px #525252;
+  background-color: transparent;
+  color: #dfdfdf;
+  border-radius: 12px;
 
-  &:active,
-  &:focus {
-    border: none;
-    outline: none;
+  &:hover {
+    background-color: #242424;
   }
 }
