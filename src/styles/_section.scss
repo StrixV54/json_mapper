@@ -11,97 +11,6 @@
   // margin-bottom: 25px;
   caret-color: #ffffff;
 
-  #codebox {
-    width: 60%;
-    height: 100%;
-    display: flex;
-    border-radius: 3px;
-    overflow: hidden;
-    // box-shadow:
-    //   0 2px 2px 0 rgba(#000, 0.14),
-    //   0 1px 5px 0 rgba(#000, 0.12),
-    //   0 3px 1px -2px rgba(#000, 0.2);
-
-    .codeflask {
-      // width: 50%;
-      height: 100%;
-      position: relative;
-      border-radius: 3px;
-
-      &::before,
-      .codeflask__lines {
-        background: #272727;
-        color: #ffffff;
-      }
-    }
-    .codeflask__textarea {
-      caret-color: #ffffff;
-    }
-
-    .codeflask {
-      background: #222222;
-      // background: #ffffff;
-      color: #abb1f5;
-      padding-right: 0;
-      caret-color: #ffffff;
-    }
-    .codeflask__code,
-    .codeflask__textarea,
-    .codeflask__lines {
-      // caret-color: #ffffff;
-      // line-height: 18px;
-      // font-size: 14px !important;
-    }
-
-    .codeflask .token.punctuation {
-      color: #a0a0a0;
-    }
-
-    .codeflask .token.keyword {
-      color: #ad85d1;
-    }
-
-    .codeflask .token.operator {
-      color: #ff5598;
-    }
-
-    .codeflask .token.string {
-      color: #51b0d5;
-    }
-
-    .codeflask .token.comment {
-      color: #9badb7;
-    }
-
-    .codeflask .token.function {
-      color: #8500ff;
-    }
-
-    .codeflask .token.boolean {
-      color: #8500ff;
-    }
-
-    .codeflask .token.number {
-      color: #b464ff;
-    }
-
-    .codeflask .token.selector {
-      color: #8500ff;
-    }
-
-    .codeflask .token.property {
-      color: #8500ff;
-    }
-
-    .codeflask .token.tag {
-      color: #8500ff;
-    }
-
-    .codeflask .token.attr-value {
-      color: #8500ff;
-    }
-  }
-
   // .input-textbox {
   //   height: 100%;
   //   width: 100%;
@@ -124,9 +33,11 @@
       resize: none;
       flex: 1;
       height: 100%;
+      margin: 10px 0;
       padding: 10px;
       font-size: 15px;
       border: none;
+      border-radius: 3px;
 
       &:active,
       &:focus {

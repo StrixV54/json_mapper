@@ -8,7 +8,13 @@ function Header({ isFullmode, setIsFullmode }) {
           PLAY WITH JSON
         </div>
         <div className="route-select">
-          <button className="mapper-btn" onClick={() => setIsFullmode(false)}>
+          <button
+            className="mapper-btn"
+            onClick={(event) => {
+              event.target.blur();
+              setIsFullmode(false);
+            }}
+          >
             Json Mapper
           </button>
           <button className="jsonstring-btn">Json to String</button>
