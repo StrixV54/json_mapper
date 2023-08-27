@@ -13,9 +13,13 @@ export default function Codebox({ codeValue, primaryText, setPrimaryText }) {
     // if (primaryText !== flask.getCode()) {
     //   flask.updateCode(primaryText);
     // }
-    flask.updateCode(primaryText);
+    // let code = JSON.stringify(primaryText);
+    // code = JSON.parse(code);
+    flask.updateCode(
+      primaryText === "" ? " " : JSON.stringify(primaryText, undefined, 4)
+    );
     // flask.updateCode(primaryText);
-    flask.onUpdate((code) => setPrimaryText(code));
+    flask.onUpdate((code) => setPrimaryText(JSON.parse(code)));
   }, [codeValue]);
 
   return <div id="codebox"></div>;

@@ -5,22 +5,22 @@ $time: 1s;
 .topbar {
   padding: 20px 40px;
   align-items: center;
-  background-color: #1d1d1d;
+  background-color: #0c0915;
   color: rgb(255, 255, 255);
   position: fixed;
   top: 0;
   width: 100%;
-  z-index: 4;
+  z-index: 5;
   height: 87px;
   transition: all $time ease-in-out;
+  border-bottom: solid 2px #000000;
 
   .header-container {
-    height: 87px;
+    height: 100%;
     display: flex;
     position: relative;
     flex-direction: row;
     justify-content: space-between;
-    transition: all $time ease-in-out;
 
     .logo {
       // width: 300px;
@@ -28,15 +28,39 @@ $time: 1s;
       margin: 10px 0;
       transition: all calc($time - 0.4s) ease-in-out;
       position: absolute;
+      color: #a7a7a7;
       top: 0;
-      left: 0;
+      left: 2%;
+      font-weight: 600;
+      font-family: "Poppins", sans-serif;
+
+      .json-logo {
+        height: 30px;
+        width: 30px;
+        position: absolute;
+        top: 0%;
+        left: -40px;
+        display: block;
+        transition: all calc($time - 0.3s) ease;
+      }
+
+      .para {
+        position: absolute;
+        margin-top: 20px;
+        display: none;
+        opacity: 0;
+        font-size: 16px;
+        font-family: "Inter", sans-serif;
+        width: 90%;
+        color: #919191;
+      }
     }
 
-    .logo-ani {
-      top: 30%;
-      left: 36%;
-      font-size: 30px;
-    }
+    // .logo-ani {
+    //   top: 30%;
+    //   left: 36%;
+    //   font-size: 30px;
+    // }
 
     .switch {
       // width: 100px;
@@ -59,7 +83,7 @@ $time: 1s;
         transition:
           height calc($time - 0.5s) ease-in-out,
           width calc($time - 0.5s) ease-in-out,
-          background-color 0.8s ease;
+          background-color 0.2s ease;
       }
 
       .mapper-btn {
@@ -67,7 +91,7 @@ $time: 1s;
         transition:
           height calc($time - 0.5s) ease-in-out,
           width calc($time - 0.5s) ease-in-out,
-          background-color 0.8s ease;
+          background-color 0.2s ease;
       }
     }
   }
@@ -77,14 +101,34 @@ $time: 1s;
   height: 80%;
 
   .header-container {
-    height: 80%;
+    // height: 80% !important;
 
-    // .logo {
-    //   top: 30%;
-    //   left: 36%;
-    //   font-size: 30px;
-    //   position: absolute;
-    // }
+    .logo {
+      top: 30%;
+      left: 36%;
+      font-size: 55px;
+      position: absolute;
+      width: 60%;
+
+      .json-logo {
+        height: 200px;
+        width: 200px;
+        position: absolute;
+        top: 0%;
+        left: -250px;
+        display: block;
+      }
+
+      .para {
+        margin-top: 10px;
+        display: block;
+        opacity: 1;
+        width: 100%;
+        color: #7951c4;
+        // display: block;
+        // opacity: 1;
+      }
+    }
 
     .route-select {
       gap: 20px;
