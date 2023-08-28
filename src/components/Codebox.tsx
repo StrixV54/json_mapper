@@ -26,13 +26,15 @@ export default function Codebox({
     // let code = JSON.stringify(primaryText);
     // code = JSON.parse(code);
     flask.updateCode(
-      primaryText === "" ? " " : JSON.stringify(primaryText, undefined, 4)
+      primaryText === " " ? "" : JSON.stringify(primaryText, undefined, 4)
     );
     // flask.updateCode(primaryText);
     flask.onUpdate((code) => {
-      if (primaryText !== "") {
+      try {
         localStorage.setItem("current", code);
         setPrimaryText(JSON.parse(code));
+      } catch (error) {
+        console.log("Check your Json", error);
       }
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps

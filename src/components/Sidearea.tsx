@@ -17,11 +17,15 @@ export default function Sidearea({
 }: props) {
   const key: RefObject<HTMLInputElement> = useRef(null);
   const value: RefObject<HTMLInputElement> = useRef(null);
+  console.log(secondaryText.length);
   const list = Object.keys(
     typeof secondaryText === "object"
       ? secondaryText
-      : JSON.parse(secondaryText)
+      : secondaryText.length > 1
+      ? JSON.parse(secondaryText)
+      : ""
   );
+  console.log(list);
   const inputList = secondaryText;
 
   const submitInput = () => {
@@ -31,8 +35,8 @@ export default function Sidearea({
       // console.log(typeof secondaryText);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let updateJson: any = secondaryText;
-      if (typeof secondaryText !== "object" && secondaryText == "") {
-        console.log(keyString);
+      if (typeof secondaryText !== "object" && secondaryText == " ") {
+        // console.log(keyString);
         updateJson = {
           [keyString]: valueString,
         };
@@ -62,7 +66,7 @@ export default function Sidearea({
     // console.log(JSON.stringify(updateJson));
     if (JSON.stringify(updateJson) == "{}") {
       // console.log(updateJson);
-      localStorage.setItem("secondary", JSON.stringify(""));
+      localStorage.setItem("secondary", JSON.stringify(" "));
       setSecondaryText("");
     } else {
       // console.log(updateJson);

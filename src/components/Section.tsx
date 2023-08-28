@@ -31,9 +31,7 @@ function Section() {
   const mapData = () => {
     let data: string = primaryText;
     console.log(data, " ", undoText);
-    console.log(
-      JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
-    );
+    console.log(JSON.stringify(data) !== JSON.stringify(undoText));
     if (
       JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
     ) {
@@ -75,8 +73,9 @@ function Section() {
   };
 
   const resetData = () => {
-    setPrimaryText("");
-    setSecondaryText("");
+    localStorage.setItem("secondary", "");
+    setPrimaryText(" ");
+    setSecondaryText(" ");
     setCodeValue((prev) => prev + 1);
   };
 
