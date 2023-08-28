@@ -1,8 +1,15 @@
 import { FaReact, FaSass } from "react-icons/fa";
 
-function Footer({ isFullmode, setIsFullmode }) {
+// interface props {
+//   isFullmode: boolean;
+// }
+//function Footer({isFullmode}: props)
+
+function Footer(props: { isFullmode: boolean }) {
   return (
-    <div className={`bottombar ${isFullmode ? "bottombar-fullmode" : ""}`}>
+    <div
+      className={`bottombar ${props.isFullmode ? "bottombar-fullmode" : ""}`}
+    >
       <div className="techstack">
         Created with
         <FaReact className="ficon" /> React,

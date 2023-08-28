@@ -1,7 +1,17 @@
 import CodeFlask from "codeflask";
 import { useEffect } from "react";
 
-export default function Codebox({ codeValue, primaryText, setPrimaryText }) {
+interface props {
+  codeValue: number;
+  primaryText: string;
+  setPrimaryText: (input: string) => void;
+}
+
+export default function Codebox({
+  codeValue,
+  primaryText,
+  setPrimaryText,
+}: props) {
   useEffect(() => {
     // console.log("first");
     const flask = new CodeFlask("#codebox", {
@@ -20,6 +30,7 @@ export default function Codebox({ codeValue, primaryText, setPrimaryText }) {
     );
     // flask.updateCode(primaryText);
     flask.onUpdate((code) => setPrimaryText(JSON.parse(code)));
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeValue]);
 
   return <div id="codebox"></div>;

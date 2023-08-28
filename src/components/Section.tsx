@@ -1,8 +1,7 @@
-import { useEffect, useLayoutEffect, useState } from "react";
+import { useLayoutEffect, useState } from "react";
 // import CodeFlask from "./CodeFlask";
 import Codebox from "./Codebox";
-import Textarea from "./Sidearea";
-import CodeFlask from "codeflask";
+import Sidearea from "./Sidearea";
 
 function Section() {
   const defaultString =
@@ -29,18 +28,19 @@ function Section() {
       localStorage.setItem("secondary", defaultSecondary);
   }, []);
 
-  const mapdata = () => {
-    let data = primaryText;
+  const mapData = () => {
+    let data: string = primaryText;
     if (data.toString() !== undoText.toString()) {
       // console.log("undo");
       localStorage.setItem("previous", data);
       setUndoText(data);
     }
     try {
-      const map = secondaryText;
+      const map: string = secondaryText;
       const isDigit = (input: string) => /^\d+$/.test(input);
       data = JSON.stringify(data);
-      Object.keys(map).forEach((item) => {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      Object.keys(map).forEach((item: any) => {
         // console.log(typeof map[item]);
         data = data.includes(item)
           ? data.replace(
@@ -52,12 +52,27 @@ function Section() {
       localStorage.setItem("current", data);
       setPrimaryText(JSON.parse(data));
       setCodeValue((prev) => prev + 1);
-    } catch (err) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
       console.log(
-        err.toString().includes(`Expected property name or '}'`)
+        error.toString().includes(`Expected property name or '}'`)
           ? "Json Error"
-          : err
+          : error
       );
+    }
+  };
+
+  const resetData = () => {
+    setPrimaryText("");
+    setSecondaryText("");
+    setCodeValue((prev) => prev + 1);
+  };
+
+  const undoData = () => {
+    if (undoText) {
+      localStorage.setItem("current", JSON.stringify(undoText));
+      setPrimaryText(undoText);
+      setCodeValue((prev) => prev + 1);
     }
   };
 
@@ -68,64 +83,13 @@ function Section() {
         primaryText={primaryText}
         setPrimaryText={setPrimaryText}
       />
-      {/* <div className="input-textbox">
-        <textarea
-          className="text-area"
-          value={primaryText}
-          onChange={(e) => setPrimaryText(e.target.value)}
-        ></textarea>
-      </div> */}
-      <div className="sidebar">
-        <h4
-          style={{
-            color: "#d4d4d4",
-            padding: "11px 0",
-            fontFamily: "Inter",
-            fontSize: "13px",
-          }}
-        >
-          @ Replaces the key with the value in the given codebox
-        </h4>
-        <Textarea
-          secondaryText={secondaryText}
-          setSecondaryText={setSecondaryText}
-        />
-        {/* <textarea
-          className="text-area"
-          value={secondaryText}
-          onChange={(e) => setSecondaryText(e.target.value)}
-        ></textarea> */}
-        <div className="btn-container">
-          <button
-            onClick={() => {
-              setPrimaryText("");
-              setSecondaryText("");
-              setCodeValue((prev) => prev + 1);
-            }}
-          >
-            RESET
-          </button>
-          <button
-            onClick={() => {
-              // console.log(undoText);
-              if (undoText) {
-                localStorage.setItem("current", JSON.stringify(undoText));
-                setPrimaryText(undoText);
-                setCodeValue((prev) => prev + 1);
-              }
-            }}
-          >
-            UNDO
-          </button>
-          <button
-            onClick={() => {
-              mapdata();
-            }}
-          >
-            MAP
-          </button>
-        </div>
-      </div>
+      <Sidearea
+        secondaryText={secondaryText}
+        setSecondaryText={setSecondaryText}
+        resetData={resetData}
+        undoData={undoData}
+        mapData={mapData}
+      />
     </div>
   );
 }

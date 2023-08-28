@@ -1,7 +1,11 @@
-import { useState } from "react";
-import Logo from "../assets/json-logo.png";
+import Logo from "../assets/json-logo1.png";
 
-function Header({ isFullmode, setIsFullmode }) {
+interface props {
+  isFullmode: boolean;
+  setIsFullmode: (input: boolean) => void;
+}
+
+function Header({ isFullmode, setIsFullmode }: props) {
   return (
     <div className={`topbar ${isFullmode ? "topbar-fullmode" : ""}`}>
       <div className="header-container">
@@ -9,9 +13,9 @@ function Header({ isFullmode, setIsFullmode }) {
           <img src={Logo} className="json-logo" />
           PLAY WITH JSON{" "}
           <p className="para">
-            This Projects aims to make it easier to work with JSONs which have
-            picklist values to which you want to replace with respective value
-            or maybe just changing from JSON to String or vice versa.
+            This Projects aims to make it easier to work with JSONs. Like you
+            want picklist values to replace with their respective value or maybe
+            just want to change a JSON to String or vice versa.
           </p>
         </div>
         <div className="route-select">
