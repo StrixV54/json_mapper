@@ -29,8 +29,13 @@ export default function Codebox({
       primaryText === "" ? " " : JSON.stringify(primaryText, undefined, 4)
     );
     // flask.updateCode(primaryText);
-    flask.onUpdate((code) => setPrimaryText(JSON.parse(code)));
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    flask.onUpdate((code) => {
+      if (primaryText !== "") {
+        localStorage.setItem("current", code);
+        setPrimaryText(JSON.parse(code));
+      }
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [codeValue]);
 
   return <div id="codebox"></div>;

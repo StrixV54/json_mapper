@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 // import CodeFlask from "./CodeFlask";
 import Codebox from "./Codebox";
 import Sidearea from "./Sidearea";
@@ -19,7 +19,7 @@ function Section() {
     JSON.parse(localStorage.getItem("secondary") || defaultSecondary)
   );
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     !localStorage.getItem("previous") &&
       localStorage.setItem("previous", defaultString);
     !localStorage.getItem("current") &&
@@ -30,25 +30,37 @@ function Section() {
 
   const mapData = () => {
     let data: string = primaryText;
-    if (data.toString() !== undoText.toString()) {
-      // console.log("undo");
-      localStorage.setItem("previous", data);
+    console.log(data, " ", undoText);
+    console.log(
+      JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
+    );
+    if (
+      JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
+    ) {
+      console.log("undo");
+      localStorage.setItem("previous", JSON.stringify(data));
       setUndoText(data);
     }
     try {
       const map: string = secondaryText;
-      const isDigit = (input: string) => /^\d+$/.test(input);
+      const isDigit: (inp: string) => boolean = (input: string) =>
+        /^\d+$/.test(input);
       data = JSON.stringify(data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       Object.keys(map).forEach((item: any) => {
-        // console.log(typeof map[item]);
-        data = data.includes(item)
-          ? data.replace(
-              new RegExp(item, "g"),
-              isDigit(item) ? `\\"${map[item]}\\"` : map[item]
-            )
-          : data;
+        if (data.includes(item)) {
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          if (isDigit(item)) {
+            data = data.includes(`"${item}"`)
+              ? data.replace(new RegExp(`"${item}"`, "g"), item)
+              : data;
+            data = data.replace(new RegExp(item, "g"), `"${map[item]}"`);
+          } else {
+            data = data.replace(new RegExp(item, "g"), map[item]);
+          }
+        }
       });
+      console.log("Mapped JSON output", data);
       localStorage.setItem("current", data);
       setPrimaryText(JSON.parse(data));
       setCodeValue((prev) => prev + 1);

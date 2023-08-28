@@ -17,22 +17,57 @@ export default function Sidearea({
 }: props) {
   const key: RefObject<HTMLInputElement> = useRef(null);
   const value: RefObject<HTMLInputElement> = useRef(null);
-  const list = Object.keys(secondaryText);
+  const list = Object.keys(
+    typeof secondaryText === "object"
+      ? secondaryText
+      : JSON.parse(secondaryText)
+  );
   const inputList = secondaryText;
 
   const submitInput = () => {
     const { value: keyString } = key.current!;
     const { value: valueString } = value.current!;
     if (keyString && valueString) {
-      // console.log(secondaryText);
+      // console.log(typeof secondaryText);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const updateJson: any = secondaryText;
+      let updateJson: any = secondaryText;
+      if (typeof secondaryText !== "object" && secondaryText == "") {
+        console.log(keyString);
+        updateJson = {
+          [keyString]: valueString,
+        };
+      } else {
+        updateJson[keyString] = valueString;
+      }
       // console.log(updateJson);
-      updateJson[keyString] = valueString;
       localStorage.setItem("secondary", JSON.stringify(updateJson));
       setSecondaryText(JSON.parse(JSON.stringify(updateJson)));
       key.current!.value = "";
       value.current!.value = "";
+    }
+  };
+
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
+  const removeItem = (item) => {
+    // console.log("first");
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    let updateJson: any = secondaryText;
+    console.log(updateJson);
+    if (typeof updateJson === "object") {
+      console.log("first");
+      delete updateJson[item];
+    } else {
+      delete JSON.parse(updateJson)[item];
+    }
+    // console.log(JSON.stringify(updateJson));
+    if (JSON.stringify(updateJson) == "{}") {
+      console.log(updateJson);
+      localStorage.setItem("secondary", JSON.stringify(""));
+      setSecondaryText("");
+    } else {
+      console.log(updateJson);
+      localStorage.setItem("secondary", JSON.stringify(updateJson));
+      setSecondaryText(updateJson);
     }
   };
 
@@ -74,7 +109,13 @@ export default function Sidearea({
               return (
                 <div className="divbar" key={id}>
                   <span className="showtext">{`${item}  ------>  ${inputList[item]}`}</span>
-                  <button className="showtext-removebtn"> x </button>
+                  <button
+                    className="showtext-removebtn"
+                    onClick={() => removeItem(item)}
+                  >
+                    {" "}
+                    x{" "}
+                  </button>
                 </div>
               );
             })}
