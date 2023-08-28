@@ -1,15 +1,15 @@
 import { FaReact, FaSass } from "react-icons/fa";
+import { BiLogoTypescript } from "react-icons/bi";
 
-// interface props {
-//   isFullmode: boolean;
-// }
+interface props {
+  isFullmode: boolean;
+}
+//function Footer(props: { isFullmode: boolean }) {
 //function Footer({isFullmode}: props)
 
-function Footer(props: { isFullmode: boolean }) {
+function Footer({ isFullmode }: props) {
   return (
-    <div
-      className={`bottombar ${props.isFullmode ? "bottombar-fullmode" : ""}`}
-    >
+    <div className={`bottombar ${isFullmode ? "bottombar-fullmode" : ""}`}>
       <div className="techstack">
         Created with
         <FaReact className="ficon" /> React,
@@ -18,7 +18,8 @@ function Footer(props: { isFullmode: boolean }) {
           alt="Codeflask"
         />
         CodeFlask.js,
-        <FaSass className="ficon" /> SCSS
+        <FaSass className="ficon" /> SCSS &nbsp;&
+        <BiLogoTypescript className="ficon" /> Typescript
       </div>
       <span>
         Made with <b>&hearts;</b> by Strix

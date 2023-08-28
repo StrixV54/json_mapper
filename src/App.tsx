@@ -9,13 +9,13 @@ import Header from "./components/Header";
 import Section from "./components/Section";
 
 function App() {
-  const [isFullmode, setIsFullmode] = useState(true);
+  const [isFullmode, setIsFullmode] = useState<boolean>(true);
 
   return (
     <>
       <Header isFullmode={isFullmode} setIsFullmode={setIsFullmode} />
       <Section />
-      <Footer isFullmode={isFullmode} setIsFullmode={setIsFullmode} />
+      <Footer isFullmode={isFullmode} />
     </>
   );
 }
