@@ -48,10 +48,10 @@ export default function Sidearea({
   };
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars, @typescript-eslint/no-explicit-any
-  const removeItem = (item) => {
+  const removeItem = (item: any) => {
     // console.log("first");
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    let updateJson: any = secondaryText;
+    const updateJson: any = secondaryText;
     console.log(updateJson);
     if (typeof updateJson === "object") {
       console.log("first");
@@ -61,11 +61,11 @@ export default function Sidearea({
     }
     // console.log(JSON.stringify(updateJson));
     if (JSON.stringify(updateJson) == "{}") {
-      console.log(updateJson);
+      // console.log(updateJson);
       localStorage.setItem("secondary", JSON.stringify(""));
       setSecondaryText("");
     } else {
-      console.log(updateJson);
+      // console.log(updateJson);
       localStorage.setItem("secondary", JSON.stringify(updateJson));
       setSecondaryText(updateJson);
     }
