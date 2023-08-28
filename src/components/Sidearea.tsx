@@ -35,7 +35,10 @@ export default function Sidearea({
       // console.log(typeof secondaryText);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       let updateJson: any = secondaryText;
-      if (typeof secondaryText !== "object" && secondaryText == "") {
+      if (
+        typeof secondaryText !== "object" &&
+        (secondaryText === "" || secondaryText === " ")
+      ) {
         // console.log(keyString);
         updateJson = {
           [keyString]: valueString,
