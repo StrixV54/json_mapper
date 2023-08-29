@@ -1,14 +1,14 @@
-import { useEffect, useState } from "react";
+import { useEffect, useLayoutEffect, useState } from "react";
 // import CodeFlask from "./CodeFlask";
-import Codebox from "./Codebox";
+// import Codebox from "./Codebox";
 import Sidearea from "./Sidearea";
+import Codearea from "./Codearea";
 
 function Section() {
   const defaultString =
     '{"This is a Key1":"ReplaceMe","THis is a Key2":"This is a Value2"}';
   const defaultSecondary = '{"ReplaceMe":"This is a Value1"}';
 
-  const [codeValue, setCodeValue] = useState<number>(0);
   const [undoText, setUndoText] = useState<string>(
     JSON.parse(localStorage.getItem("previous") || defaultString)
   );
@@ -19,7 +19,7 @@ function Section() {
     JSON.parse(localStorage.getItem("secondary") || defaultSecondary)
   );
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     !localStorage.getItem("previous") &&
       localStorage.setItem("previous", defaultString);
     !localStorage.getItem("current") &&
@@ -30,19 +30,19 @@ function Section() {
 
   const mapData = () => {
     let data: string = primaryText;
-    console.log(data, " ", undoText);
-    console.log(JSON.stringify(data) !== JSON.stringify(undoText));
-    if (
-      JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
-    ) {
-      console.log("undo");
-      localStorage.setItem("previous", JSON.stringify(data));
-      setUndoText(data);
+    let previous: string = undoText;
+    // console.log(data, " ", undoText);
+    // console.log(JSON.stringify(data) !== JSON.stringify(undoText));
+    if (JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()) {
+      // console.log("Undo done");
+      // setUndoText(data);
+      previous = data;
     }
     try {
       const map: string = secondaryText;
       const isDigit: (inp: string) => boolean = (input: string) =>
         /^\d+$/.test(input);
+
       data = JSON.stringify(data);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       Object.keys(map).forEach((item: any) => {
@@ -58,42 +58,56 @@ function Section() {
           }
         }
       });
+
+      if (JSON.stringify(JSON.parse(data)).toString() !== JSON.stringify(previous).toString()) {
+        console.log("Undo done");
+        // console.log(JSON.parse(data));
+        setUndoText(previous);
+      }
+
       console.log("Mapped JSON output", data);
-      localStorage.setItem("current", data);
+
       setPrimaryText(JSON.parse(data));
-      setCodeValue((prev) => prev + 1);
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
-      console.log(
-        error.toString().includes(`Expected property name or '}'`)
-          ? "Json Error"
-          : error
-      );
+      console.log(error);
     }
   };
 
+  useEffect(() => {
+    // console.log("current", typeof primaryText);
+    localStorage.setItem("current", JSON.stringify(primaryText));
+  }, [primaryText]);
+
+  useEffect(() => {
+    // console.log("secondary", typeof secondaryText);
+    localStorage.setItem("secondary", JSON.stringify(secondaryText));
+  }, [secondaryText]);
+
+  useEffect(() => {
+    // console.log("previous", typeof undoText);
+    localStorage.setItem("previous", JSON.stringify(undoText));
+  }, [undoText]);
+
   const resetData = () => {
-    localStorage.setItem("secondary", "");
-    setPrimaryText(" ");
-    setSecondaryText(" ");
-    setCodeValue((prev) => prev + 1);
+    setPrimaryText("");
+    setSecondaryText("");
   };
 
   const undoData = () => {
     if (undoText) {
-      localStorage.setItem("current", JSON.stringify(undoText));
       setPrimaryText(undoText);
-      setCodeValue((prev) => prev + 1);
     }
   };
 
   return (
     <div className="section">
-      <Codebox
+      {/* <Codebox
         codeValue={codeValue}
         primaryText={primaryText}
         setPrimaryText={setPrimaryText}
-      />
+      /> */}
+      <Codearea primaryText={primaryText} setPrimaryText={setPrimaryText} />
       <Sidearea
         secondaryText={secondaryText}
         setSecondaryText={setSecondaryText}
