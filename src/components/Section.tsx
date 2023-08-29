@@ -1,6 +1,4 @@
 import { useEffect, useLayoutEffect, useState } from "react";
-// import CodeFlask from "./CodeFlask";
-// import Codebox from "./Codebox";
 import Sidearea from "./Sidearea";
 import Codearea from "./Codearea";
 
@@ -102,11 +100,6 @@ function Section() {
 
   return (
     <div className="section">
-      {/* <Codebox
-        codeValue={codeValue}
-        primaryText={primaryText}
-        setPrimaryText={setPrimaryText}
-      /> */}
       <Codearea primaryText={primaryText} setPrimaryText={setPrimaryText} />
       <Sidearea
         secondaryText={secondaryText}

@@ -13,11 +13,8 @@ function Footer({ isFullmode }: props) {
       <div className="techstack">
         Created with
         <FaReact className="ficon" /> React,
-        <img
-          src="https://kazzkiq.github.io/CodeFlask/logo.svg"
-          alt="Codeflask"
-        />
-        CodeFlask.js,
+        <img src="https://codemirror.net/style/logo.svg" alt="Codeflask" />
+        CodeMirror,
         <FaSass className="ficon" /> SCSS &nbsp;&
         <BiLogoTypescript className="ficon" /> Typescript
       </div>
