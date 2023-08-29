@@ -31,7 +31,9 @@ function Section() {
     let previous: string = undoText;
     // console.log(data, " ", undoText);
     // console.log(JSON.stringify(data) !== JSON.stringify(undoText));
-    if (JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()) {
+    if (
+      JSON.stringify(data).toString() !== JSON.stringify(undoText).toString()
+    ) {
       // console.log("Undo done");
       // setUndoText(data);
       previous = data;
@@ -57,7 +59,10 @@ function Section() {
         }
       });
 
-      if (JSON.stringify(JSON.parse(data)).toString() !== JSON.stringify(previous).toString()) {
+      if (
+        JSON.stringify(JSON.parse(data)).toString() !==
+        JSON.stringify(previous).toString()
+      ) {
         console.log("Undo done");
         // console.log(JSON.parse(data));
         setUndoText(previous);
@@ -75,17 +80,11 @@ function Section() {
   useEffect(() => {
     // console.log("current", typeof primaryText);
     localStorage.setItem("current", JSON.stringify(primaryText));
-  }, [primaryText]);
-
-  useEffect(() => {
     // console.log("secondary", typeof secondaryText);
     localStorage.setItem("secondary", JSON.stringify(secondaryText));
-  }, [secondaryText]);
-
-  useEffect(() => {
     // console.log("previous", typeof undoText);
     localStorage.setItem("previous", JSON.stringify(undoText));
-  }, [undoText]);
+  }, [primaryText, secondaryText, undoText]);
 
   const resetData = () => {
     setPrimaryText("");

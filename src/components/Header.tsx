@@ -1,4 +1,5 @@
 import Logo from "../assets/json-logo1.png";
+import { LazyLoadImage } from "react-lazy-load-image-component";
 
 interface props {
   isFullmode: boolean;
@@ -10,7 +11,12 @@ function Header({ isFullmode, setIsFullmode }: props) {
     <div className={`topbar ${isFullmode ? "topbar-fullmode" : ""}`}>
       <div className="header-container">
         <div className={`logo ${isFullmode ? "logo-ani" : ""}`}>
-          <img src={Logo} className="json-logo" />
+          <LazyLoadImage
+            alt="Logo"
+            className="json-logo"
+            src={Logo}
+          />
+          {/* <img src={Logo} className="json-logo" /> */}
           PLAY WITH JSON{" "}
           <p className="para">
             This Projects aims to make it easier to work with JSONs. Like you
