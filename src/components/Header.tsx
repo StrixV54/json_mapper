@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Logo from "../assets/json-logo1.png";
 import { LazyLoadImage } from "react-lazy-load-image-component";
 
@@ -11,11 +12,7 @@ function Header({ isFullmode, setIsFullmode }: props) {
     <div className={`topbar ${isFullmode ? "topbar-fullmode" : ""}`}>
       <div className="header-container">
         <div className={`logo ${isFullmode ? "logo-ani" : ""}`}>
-          <LazyLoadImage
-            alt="Logo"
-            className="json-logo"
-            src={Logo}
-          />
+          <LazyLoadImage alt="Logo" className="json-logo" src={Logo} />
           {/* <img src={Logo} className="json-logo" /> */}
           PLAY WITH JSON{" "}
           <p className="para">
@@ -25,10 +22,20 @@ function Header({ isFullmode, setIsFullmode }: props) {
           </p>
         </div>
         <div className="route-select">
-          <button className="mapper-btn" onClick={() => setIsFullmode(false)}>
+          <Link
+            className="mapper-btn"
+            to="/jsonmapper"
+            onClick={() => setIsFullmode(false)}
+          >
             Json Mapper
-          </button>
-          <button className="jsonstring-btn">Json to String</button>
+          </Link>
+          <Link
+            className="jsonstring-btn"
+            to="/jsonstring"
+            onClick={() => setIsFullmode(false)}
+          >
+            Json to String
+          </Link>
         </div>
         <div></div>
       </div>

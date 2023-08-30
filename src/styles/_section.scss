@@ -6,17 +6,11 @@
   height: 100%;
   width: 100%;
   display: flex;
+  align-items: center;
+  justify-content: center;
   flex-direction: row;
   gap: 10px;
+  color: #ffffff;
   // margin-bottom: 25px;
   caret-color: #ffffff;
-
-  // .input-textbox {
-  //   height: 100%;
-  //   width: 100%;
-  //   display: flex;
-
-  //   .text-area {
-  //   }
-  // }
 }

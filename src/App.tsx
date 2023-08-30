@@ -6,7 +6,8 @@
 import { useState } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
-import Section from "./components/Section";
+import Section from "./components/JsonMapper";
+import { Outlet } from "react-router-dom";
 
 function App() {
   const [isFullmode, setIsFullmode] = useState<boolean>(true);
@@ -14,7 +15,7 @@ function App() {
   return (
     <>
       <Header isFullmode={isFullmode} setIsFullmode={setIsFullmode} />
-      <Section />
+      <Outlet />
       <Footer isFullmode={isFullmode} />
     </>
   );

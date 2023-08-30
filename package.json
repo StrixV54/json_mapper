@@ -25,7 +25,9 @@
     "react-icons": "^4.10.1",
     "react-lazy-load-image-component": "^1.6.0",
     "react-router": "^6.15.0",
-    "sass": "^1.66.1"
+    "react-router-dom": "^6.15.0",
+    "sass": "^1.66.1",
+    "styled-components": "^6.0.7"
   },
   "devDependencies": {
     "@types/codeflask": "^1.4.3",

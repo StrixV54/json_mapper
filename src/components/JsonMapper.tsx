@@ -2,7 +2,7 @@ import { useEffect, useLayoutEffect, useState } from "react";
 import Sidearea from "./Sidearea";
 import Codearea from "./Codearea";
 
-function Section() {
+function JsonMapper() {
   const defaultString =
     '{"This is a Key1":"ReplaceMe","THis is a Key2":"This is a Value2"}';
   const defaultSecondary = '{"ReplaceMe":"This is a Value1"}';
@@ -111,4 +111,4 @@ function Section() {
   );
 }
 
-export default Section;
+export default JsonMapper;
