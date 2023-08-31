@@ -1,11 +1,11 @@
-import { RefObject, useRef } from "react";
+import { ChangeEvent, MouseEventHandler, RefObject, useRef } from "react";
 
 interface props {
   secondaryText: string;
   setSecondaryText: (input: string) => void;
-  mapData: React.MouseEventHandler<HTMLButtonElement>;
-  resetData: React.MouseEventHandler<HTMLButtonElement>;
-  undoData: React.MouseEventHandler<HTMLButtonElement>;
+  mapData: MouseEventHandler<HTMLButtonElement>;
+  resetData: MouseEventHandler<HTMLButtonElement>;
+  undoData: MouseEventHandler<HTMLButtonElement>;
 }
 
 export default function Sidearea({
@@ -64,12 +64,60 @@ export default function Sidearea({
 
   // console.log(JSON.stringify(secondaryText));
 
+  const downloadConfig = () => {
+    const blob = new Blob([JSON.stringify(secondaryText, null, 2)], {
+      type: "application/json",
+    });
+    const url = URL.createObjectURL(blob);
+
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "dataConfig.json";
+    a.click();
+
+    URL.revokeObjectURL(url);
+  };
+
+  const configUpload = (event: ChangeEvent<HTMLInputElement>) => {
+    const files = event.target.files;
+
+    if (files && files.length > 0) {
+      const file = files[0];
+      const reader = new FileReader();
+      reader.onload = (e) => {
+        const content = e.target!.result;
+        try {
+          const jsonData = JSON.parse(content as string);
+          console.log("JSON data:", jsonData);
+          // console.log(typeof jsonData);
+          setSecondaryText(jsonData);
+        } catch (error) {
+          console.error("Error parsing JSON:", error);
+        }
+      };
+      reader.readAsText(file);
+    }
+  };
+
   return (
     <>
       <div className="sidebar">
         <div className="config-line">
-          <button className="import-btn">Import Config</button>
-          <button className="export-btn">Export this config</button>
+          <button onClick={undoData}>UNDO</button>
+          <button onClick={resetData}>RESET</button>
+          <input
+            type="file"
+            accept=".json"
+            onChange={configUpload}
+            className="import-btn"
+            id="import-input"
+          />
+          <label id="import-btn-label" htmlFor="import-input">
+            Import Config
+          </label>
+          <button onClick={downloadConfig} className="export-btn">
+            Export this config
+          </button>
         </div>
         <h4
           style={{
@@ -112,8 +160,6 @@ export default function Sidearea({
             })}
         </div>
         <div className="btn-container">
-          <button onClick={resetData}>RESET</button>
-          <button onClick={undoData}>UNDO</button>
           <button onClick={mapData}>MAP</button>
         </div>
       </div>

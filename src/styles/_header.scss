@@ -78,14 +78,8 @@ $time: 1s;
       position: absolute;
       top: 0;
 
-      .jsonstring-btn {
-        @include button();
-        transition:
-          height calc($time - 0.5s) ease-in-out,
-          width calc($time - 0.5s) ease-in-out,
-          background-color 0.2s ease;
-      }
-
+      .jsonstring-btn,
+      .jsoncomparer-btn,
       .mapper-btn {
         @include button();
         transition:
@@ -136,13 +130,9 @@ $time: 1s;
       left: 35%;
       position: absolute;
 
-      .jsonstring-btn {
-        @include button();
-        @include homescreen-btn;
-      }
-
+      .jsonstring-btn,
+      .jsoncomparer-btn,
       .mapper-btn {
-        @include button();
         @include homescreen-btn;
       }
     }

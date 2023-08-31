@@ -7,25 +7,6 @@
   min-width: 300px;
   flex-direction: column;
 
-  // .text-area {
-  //   background-color: #252525;
-  //   color: #9badb7;
-  //   resize: none;
-  //   flex: 1;
-  //   height: 100%;
-  //   margin: 10px 0;
-  //   padding: 10px;
-  //   font-size: 15px;
-  //   border: none;
-  //   border-radius: 3px;
-
-  //   &:active,
-  //   &:focus {
-  //     border: none;
-  //     outline: none;
-  //   }
-  // }
-
   .btn-container {
     display: flex;
     button {
@@ -37,20 +18,26 @@
   .config-line {
     float: right;
     position: relative;
-    display: inline;
+    display: flex;
     width: 100%;
 
     .import-btn {
-      @include button;
-      height: fit-content;
-      padding: 2px 0;
+      display: none;
     }
-    .export-btn {
+
+    #import-btn-label,
+    .export-btn,
+    button {
       @include button;
-      width: fit-content;
-      height: fit-content;
-      padding-top: 2px;
-      padding-bottom: 2px;
+    }
+
+    #import-btn-label,
+    .export-btn {
+      @include config-btn(150px);
+    }
+
+    button {
+      @include config-btn();
     }
   }
 
@@ -61,27 +48,19 @@
     border-bottom: solid 2px #3a3a3a;
     margin-bottom: 5px;
 
-    .sidebar-input1 {
-      flex: 1;
-      border-radius: 12px 0 0 12px;
-      caret-color: black;
-      // font-size: 16px;
-      padding: 0 12px;
+    .sidebar-input1,
+    .sidebar-input2 {
       outline: none;
       border: none;
-      background-color: #dbdbdb;
       min-width: 100px;
+      background-color: #dbdbdb;
+      padding: 0 12px;
+      caret-color: black;
+      flex: 1;
     }
 
-    .sidebar-input2 {
-      flex: 1;
-      caret-color: black;
-      // font-size: 16px;
-      padding: 0 12px;
-      outline: none;
-      border: none;
-      background-color: #dbdbdb;
-      min-width: 100px;
+    .sidebar-input1 {
+      border-radius: 12px 0 0 12px;
     }
 
     div {
@@ -114,32 +93,27 @@
     .divbar {
       width: 100%;
       color: #ffffff;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+      @include flexCenter;
       height: fit-content;
-      // padding: 5px 2px;
       margin: 3px 0;
       border-radius: 4px;
       font-size: 14px;
       flex-direction: row;
       background-color: #3d3d3d;
-      // border-radius: 17px;
 
       .showtext {
         text-align: center;
         flex: 1;
-        // height: 30px;
-        // padding: 5px s2px;
-        // background-color: #4a4a4a;
+        padding: 6px 0;
       }
 
       .showtext-removebtn {
-        padding: 2px 4px;
-        // height: 25px;
-        height: 30px;
+        padding: 0 4px;
+        height: 100%;
         width: 40px;
+        margin: 0;
         outline: none;
+        font-size: 18px;
         border: none;
         border-radius: 0 4px 4px 0;
         cursor: pointer;
@@ -148,7 +122,6 @@
 
         &:hover {
           background-color: #4a4a4a;
-          // color: #1d1d1d;
         }
       }
     }

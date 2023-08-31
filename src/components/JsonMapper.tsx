@@ -44,10 +44,10 @@ function JsonMapper() {
         /^\d+$/.test(input);
 
       data = JSON.stringify(data);
+
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       Object.keys(map).forEach((item: any) => {
         if (data.includes(item)) {
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           if (isDigit(item)) {
             data = data.includes(`"${item}"`)
               ? data.replace(new RegExp(`"${item}"`, "g"), item)
@@ -87,8 +87,10 @@ function JsonMapper() {
   }, [primaryText, secondaryText, undoText]);
 
   const resetData = () => {
-    setPrimaryText("");
-    setSecondaryText("");
+    if (confirm("Are you sure you want to clear every thing.")) {
+      setPrimaryText("");
+      setSecondaryText("");
+    }
   };
 
   const undoData = () => {

@@ -36,6 +36,13 @@ function Header({ isFullmode, setIsFullmode }: props) {
           >
             Json to String
           </Link>
+          <Link
+            className="jsoncomparer-btn"
+            to="/jsoncomparer"
+            onClick={() => setIsFullmode(false)}
+          >
+            Json Comparer
+          </Link>
         </div>
         <div></div>
       </div>
