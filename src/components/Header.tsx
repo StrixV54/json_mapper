@@ -14,11 +14,11 @@ function Header({ isFullmode, setIsFullmode }: props) {
         <div className={`logo ${isFullmode ? "logo-ani" : ""}`}>
           <LazyLoadImage alt="Logo" className="json-logo" src={Logo} />
           {/* <img src={Logo} className="json-logo" /> */}
-          PLAY WITH JSON{" "}
+          PLAY WITH JSON
           <p className="para">
-            This Projects aims to make it easier to work with JSONs. Like you
+            This Project aims to make it easier to work with JSONs. Like you
             want picklist values to replace with their respective value or maybe
-            just want to change a JSON to String or vice versa.
+            just want to compare between JSONs.
           </p>
         </div>
         <div className="route-select">
@@ -28,13 +28,6 @@ function Header({ isFullmode, setIsFullmode }: props) {
             onClick={() => setIsFullmode(false)}
           >
             Json Mapper
-          </Link>
-          <Link
-            className="jsonstring-btn"
-            to="/jsonstring"
-            onClick={() => setIsFullmode(false)}
-          >
-            Json to String
           </Link>
           <Link
             className="jsoncomparer-btn"

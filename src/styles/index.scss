@@ -1,13 +1,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;800&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Inter:wght@200;300;400&display=swap");
 
-@import "./footer";
-@import "./section";
-@import "./header";
-@import "./sidearea";
 @import "./mixins";
-@import "./codebox";
 @import "./variables";
+@import "./footer";
+@import "./header";
+@import "./JsonMapper/jsonmapper";
+@import "./JsonMapper/sidearea";
+@import "./JsonMapper/codebox";
+@import "./JsonComparer/jsoncomparer";
 
 * {
   margin: 0;

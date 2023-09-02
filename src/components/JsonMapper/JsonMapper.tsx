@@ -63,7 +63,7 @@ function JsonMapper() {
         JSON.stringify(JSON.parse(data)).toString() !==
         JSON.stringify(previous).toString()
       ) {
-        console.log("Undo done");
+        // console.log("Undo done");
         // console.log(JSON.parse(data));
         setUndoText(previous);
       }
@@ -99,8 +99,10 @@ function JsonMapper() {
     }
   };
 
+  const isCodeEmpty = primaryText === "";
+
   return (
-    <div className="section">
+    <div className="jsonmapper-section">
       <Codearea primaryText={primaryText} setPrimaryText={setPrimaryText} />
       <Sidearea
         secondaryText={secondaryText}
@@ -108,6 +110,7 @@ function JsonMapper() {
         resetData={resetData}
         undoData={undoData}
         mapData={mapData}
+        isCodeEmpty={isCodeEmpty}
       />
     </div>
   );

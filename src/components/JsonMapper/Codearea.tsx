@@ -19,8 +19,9 @@ function Codearea({ primaryText, setPrimaryText }: props) {
 
   return (
     <CodeMirror
-      className="Codearea"
+      className="codearea"
       width="100%"
+      height="100%"
       value={
         primaryText === ""
           ? primaryText
@@ -35,13 +36,16 @@ function Codearea({ primaryText, setPrimaryText }: props) {
         tabSize: 2,
       }}
       extensions={[langs.json()]}
-      onChange={(value, viewUpdate) => {
-        console.log(viewUpdate);
-        console.log("value:", value);
+      // eslint-disable-next-line @typescript-eslint/no-unused-vars
+      onChange={(value, _viewUpdate) => {
         try {
-          setPrimaryText(JSON.parse(value));
+          if (value === "") setPrimaryText("");
+          else setPrimaryText(JSON.parse(value));
         } catch (error) {
-          console.log("Check your Json, Clear LocalStorage to fix it up\n", error);
+          console.log(
+            "Check and Fix your Json, Clear your LocalStorage if app breaks\n",
+            error
+          );
         }
       }}
     />

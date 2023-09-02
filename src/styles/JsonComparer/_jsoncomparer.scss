@@ -1,0 +1,49 @@
+.jsoncomparer-section {
+  padding: 97px 10px 35px 10px;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 10px;
+  color: #ffffff;
+  // margin-bottom: 25px;
+  caret-color: #ffffff;
+
+  @media screen {
+  }
+
+  button {
+    @include button();
+    background-color: #1d54b9;
+    width: 200px;
+
+    &:hover {
+      background-color: #3a75e4;
+    }
+
+    &:disabled {
+      background-color: #3d3d3d;
+    }
+  }
+
+  .codearea-container {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    gap: 20px;
+    overflow-x: hidden;
+    overflow-y: scroll;
+
+    table {
+      height: fit-content;
+      font-size: 12px;
+    }
+  }
+
+  .codearea-container.tableshow {
+    background-color: #2d303c;
+  }
+}

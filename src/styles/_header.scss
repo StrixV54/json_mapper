@@ -1,11 +1,12 @@
 @import "./mixins";
+@import "./variables";
 
-$time: 1s;
+$time: $animation-time;
 
 .topbar {
   padding: 20px 40px;
   align-items: center;
-  background-color: #0c0915;
+  background-color: $header-bg-clr;
   color: rgb(255, 255, 255);
   position: fixed;
   top: 0;
@@ -15,12 +16,49 @@ $time: 1s;
   transition: all $time ease-in-out;
   border-bottom: solid 2px #000000;
 
+  // @media screen and (max-width: 1200px) {
+  //   background-color: #5d44aa;
+  //   padding-top: 10px;
+
+  //   .header-container {
+  //     flex-direction: column;
+
+  //     .logo {
+  //       font-size: 10px;
+  //       margin: 5px 0;
+  //       top: 0;
+  //       left: 2%;
+  //       font-weight: 600;
+  //       font-family: "Poppins", sans-serif;
+
+  //       .json-logo {
+  //         height: 30px;
+  //         width: 30px;
+  //         position: absolute;
+  //         top: 0%;
+  //         left: -40px;
+  //         display: block;
+  //         transition: all calc($time - 0.3s) ease;
+  //       }
+
+  //       .para {
+  //         position: absolute;
+  //         margin-top: 20px;
+  //         display: none;
+  //         opacity: 0;
+  //         font-size: 16px;
+  //         font-family: "Inter", sans-serif;
+  //         width: 90%;
+  //         color: #919191;
+  //       }
+  //     }
+  //   }
+  // }
+
   .header-container {
     height: 100%;
     display: flex;
     position: relative;
-    flex-direction: row;
-    justify-content: space-between;
 
     .logo {
       // width: 300px;
@@ -118,7 +156,7 @@ $time: 1s;
         display: block;
         opacity: 1;
         width: 100%;
-        color: #7951c4;
+        color: $home-text-clr;
         // display: block;
         // opacity: 1;
       }

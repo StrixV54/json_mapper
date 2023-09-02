@@ -3,6 +3,7 @@ import { ChangeEvent, MouseEventHandler, RefObject, useRef } from "react";
 interface props {
   secondaryText: string;
   setSecondaryText: (input: string) => void;
+  isCodeEmpty: boolean;
   mapData: MouseEventHandler<HTMLButtonElement>;
   resetData: MouseEventHandler<HTMLButtonElement>;
   undoData: MouseEventHandler<HTMLButtonElement>;
@@ -14,6 +15,7 @@ export default function Sidearea({
   mapData,
   resetData,
   undoData,
+  isCodeEmpty,
 }: props) {
   const key: RefObject<HTMLInputElement> = useRef(null);
   const value: RefObject<HTMLInputElement> = useRef(null);
@@ -112,7 +114,7 @@ export default function Sidearea({
             className="import-btn"
             id="import-input"
           />
-          <label id="import-btn-label" htmlFor="import-input">
+          <label className="import-btn-label" htmlFor="import-input">
             Import Config
           </label>
           <button onClick={downloadConfig} className="export-btn">
@@ -160,7 +162,9 @@ export default function Sidearea({
             })}
         </div>
         <div className="btn-container">
-          <button onClick={mapData}>MAP</button>
+          <button onClick={mapData} disabled={isCodeEmpty}>
+            MAP
+          </button>
         </div>
       </div>
     </>

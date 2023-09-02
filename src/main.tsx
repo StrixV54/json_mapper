@@ -1,11 +1,11 @@
 import React from "react";
-import ReactDOM from "react-dom/client";
+import ReactDOM from "react-dom";
 import App from "./App.tsx";
 import "./styles/index.scss";
 import ErrorPage from "./error-page.tsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import JsonMapper from "./components/JsonMapper.tsx";
-import JsonString from "./components/JsonString.tsx";
+import JsonMapper from "./components/JsonMapper/JsonMapper.tsx";
+import JsonComparer from "./components/JsonComparer/JsonComparer.tsx";
 
 const router = createBrowserRouter([
   {
@@ -18,15 +18,16 @@ const router = createBrowserRouter([
         element: <JsonMapper />,
       },
       {
-        path: "jsonstring",
-        element: <JsonString />,
+        path: "jsoncomparer",
+        element: <JsonComparer />,
       },
     ],
   },
 ]);
 
-ReactDOM.createRoot(document.getElementById("root")!).render(
+ReactDOM.render(
   <React.StrictMode>
     <RouterProvider router={router} />
-  </React.StrictMode>
+  </React.StrictMode>,
+  document.getElementById("root")
 );

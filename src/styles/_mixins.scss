@@ -1,3 +1,5 @@
+@import "./variables";
+
 @mixin fullflex {
   display: flex;
   height: 100%;
@@ -10,7 +12,7 @@
   justify-content: center;
 }
 
-@mixin button($color: #3f1797, $hovercolor: #6037b8, $fit: 140px) {
+@mixin button($color: $main-clr, $hovercolor: $main-hover-clr, $fit: 140px) {
   height: 40px;
   border-radius: 5px;
   padding: 0 20px;
@@ -55,7 +57,7 @@
   &:hover {
     color: #ffffff;
     box-shadow: none;
-    background-color: #3f1797;
+    background-color: $main-clr;
     border: none;
   }
 }
